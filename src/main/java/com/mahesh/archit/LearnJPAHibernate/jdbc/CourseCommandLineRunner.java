@@ -5,10 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CourseJDBCCommandLineRunner implements CommandLineRunner {
+public class CourseCommandLineRunner implements CommandLineRunner {
+
+//    @Autowired
+//    private CourseJDBCRepository repository;
 
     @Autowired
-    private CourseJDBCRepository repository;
+    private CourseJPARepository repository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -16,7 +19,7 @@ public class CourseJDBCCommandLineRunner implements CommandLineRunner {
         repository.insert(new Course(2, "Learn Spring", "GFG"));
 
         repository.delete(1);
-        Course course = repository.select(2);
+        Course course = repository.findById(2);
         System.out.println(course);
     }
 }
